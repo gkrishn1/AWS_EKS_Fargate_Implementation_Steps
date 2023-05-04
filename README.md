@@ -1,4 +1,4 @@
-# AWS EKS Fargate Implementation_Steps
+# AWS EKS Fargate Implementation Steps
 # This repository contains the implementation steps for the AWS EKS Fargate
 
 Prerequisites:
