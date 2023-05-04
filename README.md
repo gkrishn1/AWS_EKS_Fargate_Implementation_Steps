@@ -75,7 +75,7 @@ e)	Install the AWS Load Balancer Controller using Helm
                    --set region=YOUR_REGION_CODE \
                    --set vpcId=<VPC_ID> \
                    --set serviceAccount.name=aws-load-balancer-controller \
-            -n kube-system
+                   -n kube-system
                       
 
 5)	Kubernetes dashboard configuration
