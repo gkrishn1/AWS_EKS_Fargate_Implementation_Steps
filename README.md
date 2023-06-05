@@ -44,10 +44,9 @@ The following config file declares an EKS cluster with two Fargate profiles. All
 
 4)	Configure AWS load balancer controller for AWS fargate with the below steps:
 
-a)	Allow the cluster to use AWS Identity and Access Management (IAM) for service accounts by running the following command: 
+     a)	Allow the cluster to use AWS Identity and Access Management (IAM) for service accounts by running the following command: 
 
-
-eksctl utils associate-iam-oidc-provider --region <aws-region> --cluster <EKS cluster name> --approve
+          `eksctl utils associate-iam-oidc-provider --region <aws-region> --cluster <EKS cluster name> --approve`
  
 Ex: aws-region => us-west-2
     EKS cluster => test
@@ -62,12 +61,13 @@ b)	To create a service account named aws-load-balancer-controller in the kube-sy
       --override-existing-serviceaccounts --approve    
  
 c)	To download an IAM policy that allows the AWS Load Balancer Controller to make calls to AWS APIs on your behalf, run the following command:
-                            curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.4/docs/install/iam_policy.json
+     `curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.4/docs/install/iam_policy.json`
 
 d)	To create an IAM policy using the policy that you downloaded in step c, run the following command:
-                              aws iam create-policy \
-                             --policy-name AWSLoadBalancerControllerIAMPolicy \
-                            --policy-document file://iam_policy.json
+                              
+       `aws iam create-policy \
+        --policy-name AWSLoadBalancerControllerIAMPolicy \
+        --policy-document file://iam_policy.json`
                
 e)	Install the AWS Load Balancer Controller using Helm
             To add the Amazon EKS chart repo to Helm, run the following command:
