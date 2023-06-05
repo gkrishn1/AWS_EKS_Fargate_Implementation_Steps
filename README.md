@@ -99,7 +99,7 @@ There are two ways of creating the EKS Fargate cluster which are mentioned below
 
 Apply the dashboard manifest to your cluster using the command for the version of your cluster.
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml 
+          `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml` 
 
 Above command performs the following operations:
 1)	It will create the namespace kubernetes-dashboard
@@ -112,5 +112,5 @@ Above command performs the following operations:
 
 Create the cluster role binding with cluster-admin role for the above service account created.
 
-kubectl create clusterrolebinding kubernetes-dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:kubernetes-dashboard
+        `kubectl create clusterrolebinding kubernetes-dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:kubernetes-dashboard`
 
