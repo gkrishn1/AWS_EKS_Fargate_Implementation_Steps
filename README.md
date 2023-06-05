@@ -19,10 +19,10 @@ Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Das
 There are two ways of creating the EKS Fargate cluster which are mentioned below.
 a)	Using eksctl command:
 
-           `eksctl create cluster \
+           eksctl create cluster \
            --name cluster_name\
            --region aws_region \
-           --fargate`
+           --fargate
  
  This command creates a Fargate cluster with three flags:
  
@@ -49,12 +49,14 @@ eksctl utils associate-iam-oidc-provider --region <aws-region> --cluster <EKS cl
                                                   EKS cluster => test
                     
 b)	To create a service account named aws-load-balancer-controller in the kube-system namespace for the AWS Load Balancer Controller, run the following command: 
+      
       eksctl create iamserviceaccount \
       --cluster=YOUR_CLUSTER_NAME \
       --namespace=kube-system \
       --name=aws-load-balancer-controller \
       --attach-policy-    arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AWSLoadBalancerControllerIAMPolicy \
-      --override-existing-serviceaccounts --approve                   
+      --override-existing-serviceaccounts --approve    
+ 
 c)	To download an IAM policy that allows the AWS Load Balancer Controller to make calls to AWS APIs on your behalf, run the following command:
                             curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.4/docs/install/iam_policy.json
 
