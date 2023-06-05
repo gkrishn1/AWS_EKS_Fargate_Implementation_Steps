@@ -29,9 +29,11 @@ a)	Using eksctl command:
 --name:  the name used to define the name of the cluster
 --region: which region to deploy the Kubernetes cluster
 --fargate: used to deploy a cluster using the Fargate deployment
+
  Ex: eksctl create cluster --name Test --region us-west-2 --fargate 
      Test -> Name of the cluster
      us-west-2 ->  AWS Region
+     
   This will create the cluster named “Test” in the us-west-2 region with the default fargate profile created for the default and kube-system namespaces.
 
 b)	Using the YAML configuration file:
@@ -44,9 +46,11 @@ The following config file declares an EKS cluster with two Fargate profiles. All
 
 a)	Allow the cluster to use AWS Identity and Access Management (IAM) for service accounts by running the following command: 
 
+
 eksctl utils associate-iam-oidc-provider --region <aws-region> --cluster <EKS cluster name> --approve
-                                           Ex: aws-region => us-west-2
-                                                  EKS cluster => test
+ 
+Ex: aws-region => us-west-2
+    EKS cluster => test
                     
 b)	To create a service account named aws-load-balancer-controller in the kube-system namespace for the AWS Load Balancer Controller, run the following command: 
       
