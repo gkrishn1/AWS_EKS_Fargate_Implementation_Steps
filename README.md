@@ -34,6 +34,7 @@ There are two ways of creating the EKS Fargate cluster which are mentioned below
        b)	Using the YAML configuration file:
 
           The following config file declares an EKS cluster with two Fargate profiles. All pods defined in the default and kube-system namespaces will run on Fargate. All pods in the dev namespace that also have the label env=dev will also run on Fargate.
+          
   ![image](https://github.com/gkrishn1/AWS_EKS_Fargate_Implementation_Steps/assets/94170369/47159fc7-18aa-4cc3-a232-2021ed78c739)
 
 
