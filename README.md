@@ -19,7 +19,7 @@
 There are two ways of creating the EKS Fargate cluster which are mentioned below.
        - Using eksctl command:
            
-           `eksctl create cluster --name cluster_name --region aws_region --fargate`
+                `eksctl create cluster --name cluster_name --region aws_region --fargate`
         
       This command creates a Fargate cluster with three flags:
    
@@ -29,7 +29,8 @@ There are two ways of creating the EKS Fargate cluster which are mentioned below
    
       --fargate: used to deploy a cluster using the Fargate deployment
        
-       **Ex:** `eksctl create cluster --name Test --region us-west-2 --fargate` 
+    **Ex:** 
+                   `eksctl create cluster --name Test --region us-west-2 --fargate` 
            
      Test -> Name of the cluster
      
