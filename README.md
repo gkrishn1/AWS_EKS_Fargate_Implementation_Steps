@@ -19,12 +19,13 @@ Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Das
 There are two ways of creating the EKS Fargate cluster which are mentioned below.
 a)	Using eksctl command:
 
-           eksctl create cluster \
+           `eksctl create cluster \
            --name cluster_name\
            --region aws_region \
-           --fargate 
+           --fargate`
  
  This command creates a Fargate cluster with three flags:
+ 
 --name:  the name used to define the name of the cluster
 --region: which region to deploy the Kubernetes cluster
 --fargate: used to deploy a cluster using the Fargate deployment
