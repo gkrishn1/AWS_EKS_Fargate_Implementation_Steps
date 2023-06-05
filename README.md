@@ -17,29 +17,25 @@ Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Das
  
 3)	Creation of the EKS Fargate cluster
 There are two ways of creating the EKS Fargate cluster which are mentioned below.
-a)	Using eksctl command:
-
-           eksctl create cluster \
+      a)	Using eksctl command:
+           `eksctl create cluster \
            --name cluster_name\
            --region aws_region \
-           --fargate
- 
- This command creates a Fargate cluster with three flags:
- 
---name:  the name used to define the name of the cluster
---region: which region to deploy the Kubernetes cluster
---fargate: used to deploy a cluster using the Fargate deployment
+           --fargate`
+        This command creates a Fargate cluster with three flags:
+        --name:  the name used to define the name of the cluster
+       --region: which region to deploy the Kubernetes cluster
+       --fargate: used to deploy a cluster using the Fargate deployment
+       Ex: eksctl create cluster --name Test --region us-west-2 --fargate 
+           Test -> Name of the cluster
+           us-west-2 ->  AWS Region
+        This will create the cluster named “Test” in the us-west-2 region with the default fargate profile created for the default and kube-system namespaces.
 
- Ex: eksctl create cluster --name Test --region us-west-2 --fargate 
-     Test -> Name of the cluster
-     us-west-2 ->  AWS Region
-     
-  This will create the cluster named “Test” in the us-west-2 region with the default fargate profile created for the default and kube-system namespaces.
+       b)	Using the YAML configuration file:
 
-b)	Using the YAML configuration file:
+          The following config file declares an EKS cluster with two Fargate profiles. All pods defined in the default and kube-system namespaces will run on Fargate. All pods in the dev namespace that also have the label env=dev will also run on Fargate.
+  ![image](https://github.com/gkrishn1/AWS_EKS_Fargate_Implementation_Steps/assets/94170369/47159fc7-18aa-4cc3-a232-2021ed78c739)
 
-The following config file declares an EKS cluster with two Fargate profiles. All pods defined in the default and kube-system namespaces will run on Fargate. All pods in the dev namespace that also have the label env=dev will also run on Fargate.
- 
 
 
 4)	Configure AWS load balancer controller for AWS fargate with the below steps:
