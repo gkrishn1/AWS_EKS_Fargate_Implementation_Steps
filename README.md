@@ -3,7 +3,7 @@
 
 Prerequisites:
 
-Kubernetes client - Kubectl must be installed. If not already installed, click here
+Kubernetes client - Kubectl must be installed. If not already installed, Go to https://kubernetes.io/docs/tasks/tools/ and install it.
 Amazon Web Service account
 AWS CLI configured - Configure from here
 An account with the required permissions to create EKS cluster
