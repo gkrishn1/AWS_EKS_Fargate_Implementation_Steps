@@ -3,10 +3,10 @@
 
 Prerequisites:
 
-Kubernetes client - Kubectl must be installed. If not already installed, Go to https://kubernetes.io/docs/tasks/tools/ and install it.
-Amazon Web Service account
-AWS CLI configured - Configure from here
-An account with the required permissions to create EKS cluster
+1) Kubernetes client - Kubectl must be installed. If not already installed, Go to https://kubernetes.io/docs/tasks/tools/ and install it.
+2) Amazon Web Service account
+3) AWS CLI configured - Configure from here (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 
+4) An account with the required permissions to create EKS cluster
 
 
 Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Dashboard:
