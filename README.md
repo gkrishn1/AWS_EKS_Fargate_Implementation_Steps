@@ -3,15 +3,15 @@
 
 Prerequisites:
 
-1) Kubernetes client - Kubectl must be installed. If not already installed, Go to https://kubernetes.io/docs/tasks/tools/ and install it.
+1) Kubernetes client - Kubectl must be installed. If not already installed, [click here](https://kubernetes.io/docs/tasks/tools/)
 2) Amazon Web Service account
-3) AWS CLI configured - Configure from here (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 
+3) AWS CLI configured - Configure from [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 
 4) An account with the required permissions to create EKS cluster
 
 
 Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Dashboard:
 
-1)	Create the AWS user having required permissions to deploy EKS cluster. AWS Document reference: https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html
+1)	Create the AWS user having required permissions to deploy EKS cluster. AWS Document reference: [click here](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)
 
 2)	Configure AWS cli with the credentials created in the first step.
  
@@ -32,7 +32,6 @@ There are two ways of creating the EKS Fargate cluster which are mentioned below
         This will create the cluster named “Test” in the us-west-2 region with the default fargate profile created for the default and kube-system namespaces.
 
        b)	Using the YAML configuration file:
-
           The following config file declares an EKS cluster with two Fargate profiles. All pods defined in the default and kube-system namespaces will run on Fargate. All pods in the dev namespace that also have the label env=dev will also run on Fargate.
           
   ![image](https://github.com/gkrishn1/AWS_EKS_Fargate_Implementation_Steps/assets/94170369/47159fc7-18aa-4cc3-a232-2021ed78c739)
@@ -45,42 +44,45 @@ There are two ways of creating the EKS Fargate cluster which are mentioned below
 
           `eksctl utils associate-iam-oidc-provider --region <aws-region> --cluster <EKS cluster name> --approve`
  
-Ex: aws-region => us-west-2
-    EKS cluster => test
+           Ex: aws-region => us-west-2
+   -       EKS cluster => test
                     
-b)	To create a service account named aws-load-balancer-controller in the kube-system namespace for the AWS Load Balancer Controller, run the following command: 
+      b)	To create a service account named aws-load-balancer-controller in the kube-system namespace for the AWS Load Balancer Controller, run           the following command: 
       
-      eksctl create iamserviceaccount \
+      `eksctl create iamserviceaccount \
       --cluster=YOUR_CLUSTER_NAME \
       --namespace=kube-system \
       --name=aws-load-balancer-controller \
       --attach-policy-    arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AWSLoadBalancerControllerIAMPolicy \
-      --override-existing-serviceaccounts --approve    
+      --override-existing-serviceaccounts --approve`    
  
-c)	To download an IAM policy that allows the AWS Load Balancer Controller to make calls to AWS APIs on your behalf, run the following command:
+      c)	To download an IAM policy that allows the AWS Load Balancer Controller to make calls to AWS APIs on your behalf, run the following command:
      `curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.4/docs/install/iam_policy.json`
 
-d)	To create an IAM policy using the policy that you downloaded in step c, run the following command:
+      d)	To create an IAM policy using the policy that you downloaded in step c, run the following command:
                               
        `aws iam create-policy \
         --policy-name AWSLoadBalancerControllerIAMPolicy \
         --policy-document file://iam_policy.json`
                
-e)	Install the AWS Load Balancer Controller using Helm
+      e)	Install the AWS Load Balancer Controller using Helm
             To add the Amazon EKS chart repo to Helm, run the following command:
-                  helm repo add eks https://aws.github.io/eks-charts
+            
+                  `helm repo add eks https://aws.github.io/eks-charts`
 
             To install the TargetGroupBinding custom resource definitions (CRDs), run the following command:
-                      kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+            
+                   `kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"`
 
              To install the Helm chart, run the following command:
-                    helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+             
+                    `helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
                    --set clusterName=YOUR_CLUSTER_NAME \
                    --set serviceAccount.create=false \
                    --set region=YOUR_REGION_CODE \
                    --set vpcId=<VPC_ID> \
                    --set serviceAccount.name=aws-load-balancer-controller \
-                   -n kube-system
+                   -n kube-system`
                       
 
 5)	Kubernetes dashboard configuration
