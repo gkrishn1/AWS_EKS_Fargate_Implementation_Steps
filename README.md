@@ -1,7 +1,7 @@
 # AWS EKS Fargate Implementation Steps
 # This repository contains the implementation steps for the AWS EKS Fargate
 
-Prerequisites:
+**Prerequisites:**
 
 1) Kubernetes client - Kubectl must be installed. If not already installed, [click here](https://kubernetes.io/docs/tasks/tools/)
 2) Amazon Web Service account
@@ -9,7 +9,7 @@ Prerequisites:
 4) An account with the required permissions to create EKS cluster
 
 
-Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Dashboard:
+**Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Dashboard:**
 
 1)	Create the AWS user having required permissions to deploy EKS cluster. AWS Document reference: [click here](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)
 
@@ -17,24 +17,31 @@ Steps to create the EKS cluster, AWS Load Balancer Controller and Kubernetes Das
  
 3)	Creation of the EKS Fargate cluster
 There are two ways of creating the EKS Fargate cluster which are mentioned below.
-      a)	Using eksctl command:
-           `eksctl create cluster \
-           --name cluster_name\
-           --region aws_region \
-           --fargate`
-        This command creates a Fargate cluster with three flags:
-        --name:  the name used to define the name of the cluster
-       --region: which region to deploy the Kubernetes cluster
-       --fargate: used to deploy a cluster using the Fargate deployment
-       Ex: eksctl create cluster --name Test --region us-west-2 --fargate 
-           Test -> Name of the cluster
-           us-west-2 ->  AWS Region
-        This will create the cluster named “Test” in the us-west-2 region with the default fargate profile created for the default and kube-system namespaces.
+       - Using eksctl command:
+           
+           `eksctl create cluster --name cluster_name --region aws_region --fargate`
+        
+      This command creates a Fargate cluster with three flags:
+   
+      --name:  the name used to define the name of the cluster
+   
+      --region: which region to deploy the Kubernetes cluster
+   
+      --fargate: used to deploy a cluster using the Fargate deployment
+       
+       Ex: `eksctl create cluster --name Test --region us-west-2 --fargate` 
+           
+     Test -> Name of the cluster
+     
+     us-west-2 ->  AWS Region
+        
+     This will create the cluster named “Test” in the us-west-2 region with the default fargate profile created for the default and kube-system namespaces.
 
-       b)	Using the YAML configuration file:
+       - Using the YAML configuration file:
+       
           The following config file declares an EKS cluster with two Fargate profiles. All pods defined in the default and kube-system namespaces will run on Fargate. All pods in the dev namespace that also have the label env=dev will also run on Fargate.
           
-  ![image](https://github.com/gkrishn1/AWS_EKS_Fargate_Implementation_Steps/assets/94170369/47159fc7-18aa-4cc3-a232-2021ed78c739)
+            ![image](https://github.com/gkrishn1/AWS_EKS_Fargate_Implementation_Steps/assets/94170369/47159fc7-18aa-4cc3-a232-2021ed78c739)
 
 
 
